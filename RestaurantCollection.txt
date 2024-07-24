@@ -1,0 +1,100 @@
+Create a Collection in MongoDB:
+	1. Foo Item
+	2. Restaurant
+
+1. Insert 5 records into both collections (using insertMany and insertOne).
+
+
+db.food_item.insertMany([
+{"name": "curd_rice", "calories": 20, "brand": "A2B", "category": "meal", "price":70},
+{"name": "orange_juice", "calories": 80, "brand": "Tropicana", "category": "juice", "price":55},
+{"name": "pudina_rice", "calories": 25, "brand": "A2B", "category": "meal", "price":75},
+{"name": "apple_juice", "calories": 85, "brand": "Appy", "category": "juice", "price":35},
+{"name": "biscuit", "calories": 67, "brand": "Parle", "category": "snack", "price":10},
+{"name": "murukula", "calories": 90, "brand": "Haldirams", "category": "snack", "price":40}
+]);
+
+db.food_item.insertOne({"name": "briyani", "calories": 200, "brand": "Geetham", "category": "meal", "price":350});
+
+--------------------------------------------------------------------------------------------
+
+
+db.restaurant.insertMany([
+{"name": "Indian Accent", "year": 2012, "location": "Mandoli", "contact": 1234512345, "email":"ia@gamil.com", "no_of_days_open": 5, "city": "New Delhi", "category":"meals" , "serving":"Buffet"},
+{"name": "Cafe Coffee Day", "year": 2000, "location": "Indiranagar", "contact": 2345623456, "email":"ccd@gamil.com", "no_of_days_open": 7, "city": "Bangalore ", "category":"juices" , "serving":"Dining"},
+{"name": "A2B", "year": 2010, "location": "Adayar", "contact": 3456734567, "email":"a2b@gamil.com", "no_of_days_open": 7, "city": "Chennai", "category":"snack" , "serving":"Takeaway"},
+{"name": "Wow China", "year": 2020, "location": "Anna Nagar", "contact": 8989898989, "email":"wowc@gamil.com", "no_of_days_open": 2, "city": "Chennai", "category":"snack" , "serving":"Dining"},
+{"name": "Paradise", "year": 1990, "location": "KharKhana", "contact": 7897897891, "email":"paradise@gamil.com", "no_of_days_open": 7, "city": "Hyderabad", "category":"meals" , "serving":"Takeaway"},
+{"name": "Daily Kitchen ", "year": 2000, "location": "Bhindi Bazar", "contact": 4545456788, "email":"dk@gamil.com", "no_of_days_open": 7, "city": "Mumbai", "category":"juices" , "serving":"Takeaway"}
+]);
+
+
+db.restaurant.insertOne(
+{"name": "Buhari", "year": 1980, "location": "Tambaram", "contact": 9876543210, "email":"buhari@gamil.com", "no_of_days_open": 2, "city": "Chennai", "category":"meals" , "serving":"Dining"}
+);
+
+
+===========================================================================================================================
+
+
+2. Search and print the documents in food collection which are belonging to category - juices.
+
+db.food_item.find({"category":"juice"}).pretty();
+
+==========================================================================================================================
+
+3. Search and print the Restaurant collection in food collection which are belonging to City - Delhi and Mumbai
+
+db.restaurant.find({city :{$in: ["New Delhi", "Mumbai"]}});
+
+==========================================================================================================================
+
+4. Update the price of any food item belonging to category - snacks.
+
+db.food_item.updateOne({price: 10}, {$set: {price: 20}});
+
+=========================================================================================================================
+
+5. Update the location of restaurant belonging to city - Delhi.
+
+db.restaurant.updateOne({location: "Mandoli"}, {$set: {location: "Fatehpur"}});
+
+========================================================================================================================
+
+6. Delete the Food item belonging to brand - Haldiram and also delete all the food items belonging to category - juices.
+
+db.food_item.deleteOne({brand: "Haldirams"});
+db.food_item.deleteMany({category: "juice"});
+
+
+========================================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
